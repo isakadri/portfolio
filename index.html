@@ -25,6 +25,15 @@
             --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
+        .dark-theme {
+            --light: #121212;
+            --dark: #F8F9FA;
+            --text: #E0E0E0;
+            --text-light: #A0A0A0;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.5);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -37,10 +46,11 @@
         }
 
         body {
-            background-color: #f9f9f9;
+            background-color: var(--light);
             color: var(--text);
             line-height: 1.6;
             overflow-x: hidden;
+            transition: background-color 0.5s ease, color 0.5s ease;
         }
 
         .container {
@@ -65,9 +75,18 @@
             transition: var(--transition);
         }
 
+        .dark-theme header {
+            background-color: rgba(18, 18, 18, 0.95);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
         header.scrolled {
             padding: 0.8rem 0;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark-theme header.scrolled {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
         }
 
         nav {
@@ -95,6 +114,7 @@
         .nav-links {
             display: flex;
             list-style: none;
+            align-items: center;
         }
 
         .nav-links li {
@@ -110,9 +130,32 @@
             border-radius: 30px;
         }
 
+        .dark-theme .nav-links a {
+            color: var(--light);
+        }
+
         .nav-links a:hover,
         .nav-links a.active {
             color: var(--primary);
+        }
+
+        .theme-toggle {
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-left: 1rem;
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(30deg);
         }
 
         .cv-btn {
@@ -182,6 +225,29 @@
             margin-bottom: 1.5rem;
             font-weight: 800;
             text-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .typing-container {
+            display: inline-block;
+            position: relative;
+        }
+
+        .typing-text {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 3px solid white;
+            animation: typing 3.5s steps(30, end), blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: white }
         }
 
         .hero p {
@@ -314,6 +380,10 @@
             color: white;
         }
 
+        .dark-theme .skill {
+            background: var(--gradient-primary);
+        }
+
         .skill:hover {
             transform: translateY(-5px) rotate(5deg);
             box-shadow: var(--shadow-hover);
@@ -326,6 +396,10 @@
             padding: 2.5rem;
             box-shadow: var(--shadow);
             transition: var(--transition);
+        }
+
+        .dark-theme .about-visual {
+            background: #1E1E1E;
         }
 
         .about-visual:hover {
@@ -357,6 +431,11 @@
             box-shadow: var(--shadow);
         }
 
+        .dark-theme .filter-btn {
+            background: #1E1E1E;
+            color: var(--text);
+        }
+
         .filter-btn.active {
             background: var(--gradient-primary);
             color: white;
@@ -383,6 +462,10 @@
             position: relative;
             opacity: 0;
             transform: translateY(30px);
+        }
+
+        .dark-theme .project-card {
+            background-color: #1E1E1E;
         }
 
         .project-card.animate {
@@ -443,6 +526,10 @@
             font-size: 1.5rem;
         }
 
+        .dark-theme .project-content h3 {
+            color: var(--text);
+        }
+
         .project-content p {
             color: var(--text-light);
             margin-bottom: 1.5rem;
@@ -463,6 +550,10 @@
             font-size: 0.8rem;
             color: var(--text-light);
             font-weight: 500;
+        }
+
+        .dark-theme .project-tag {
+            background-color: #2A2A2A;
         }
 
         .project-link {
@@ -492,6 +583,10 @@
             background-color: white;
         }
 
+        .dark-theme .demo {
+            background-color: #121212;
+        }
+
         .demo-container {
             display: flex;
             gap: 3rem;
@@ -507,6 +602,10 @@
             transition: var(--transition);
         }
 
+        .dark-theme .demo-controls {
+            background: #1E1E1E;
+        }
+
         .demo-controls:hover {
             transform: translateY(-10px);
             box-shadow: var(--shadow-hover);
@@ -516,6 +615,10 @@
             margin-bottom: 1.5rem;
             color: var(--dark);
             font-size: 1.5rem;
+        }
+
+        .dark-theme .demo-controls h3 {
+            color: var(--text);
         }
 
         .control-group {
@@ -529,6 +632,10 @@
             color: var(--dark);
         }
 
+        .dark-theme .control-group label {
+            color: var(--text);
+        }
+
         .control-group select, .control-group input {
             width: 100%;
             padding: 12px 15px;
@@ -537,6 +644,13 @@
             background-color: white;
             transition: var(--transition);
             font-size: 1rem;
+        }
+
+        .dark-theme .control-group select, 
+        .dark-theme .control-group input {
+            background-color: #2A2A2A;
+            border-color: #444;
+            color: var(--text);
         }
 
         .control-group select:focus, .control-group input:focus {
@@ -552,6 +666,10 @@
             border-radius: 20px;
             box-shadow: var(--shadow);
             transition: var(--transition);
+        }
+
+        .dark-theme .demo-viz {
+            background: #1E1E1E;
         }
 
         .demo-viz:hover {
@@ -657,6 +775,10 @@
             text-align: center;
         }
 
+        .dark-theme footer {
+            background-color: #0A0A0A;
+        }
+
         .social-links {
             display: flex;
             justify-content: center;
@@ -760,6 +882,108 @@
             animation: float 6s infinite ease-in-out;
         }
 
+        /* Stats Section */
+        .stats {
+            background: var(--gradient-secondary);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .stat-item {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background-color: var(--light);
+            padding: 6rem 0;
+        }
+
+        .dark-theme .testimonials {
+            background-color: #121212;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .dark-theme .testimonial-card {
+            background: #1E1E1E;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            margin-right: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .author-info h4 {
+            margin-bottom: 0.2rem;
+            color: var(--dark);
+        }
+
+        .dark-theme .author-info h4 {
+            color: var(--text);
+        }
+
+        .author-info p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
         /* Responsive Design */
         @media (max-width: 992px) {
             .about-content, .demo-container, .contact-content {
@@ -815,8 +1039,13 @@
                     <li><a href="#projects">Projects</a></li>
                     <li><a href="#demo">Interactive Demo</a></li>
                     <li><a href="#contact">Contact</a></li>
+                    <li>
+                        <button class="theme-toggle" id="themeToggle">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </li>
                 </ul>
-                <a href="https://drive.google.com/file/d/1jKXyfl_YD0ipPIe_lUSjG1p6qxYbuW5k/view?usp=sharing" class="cv-btn" download>
+                <a href="isa_resum.pdf" class="cv-btn" download>
                     <i class="fas fa-download"></i> Download CV
                 </a>
                 <div class="mobile-menu">
@@ -831,10 +1060,38 @@
         <div class="particles" id="particles"></div>
         <div class="container">
             <div class="hero-content">
-                <h1 class="fade-in">Data Science & Analytics Isa_Kadri...</h1>
+                <h1 class="fade-in">
+                    <span class="typing-container">
+                        <span class="typing-text">Data Science & Analysis</span>
+                    </span>
+                </h1>
                 <p class="fade-in delay-1">Hi, I'm Isa Kadri. I transform complex data into actionable insights through advanced analytics, machine learning, and compelling visualizations.</p>
                 <a href="#projects" class="btn fade-in delay-2">View Projects</a>
                 <a href="#contact" class="btn btn-outline fade-in delay-3">Get In Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-number" id="projectCount">50+</div>
+                    <div class="stat-label">Projects Completed</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="clientCount">7.0+</div>
+                    <div class="stat-label">CGPA</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="experienceCount">100+</div>
+                    <div class="stat-label">DSA Solved</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="algorithmCount">20+</div>
+                    <div class="stat-label">ML Algorithms</div>
+                </div>
             </div>
         </div>
     </section>
@@ -844,9 +1101,7 @@
         <div class="container">
             <div class="section-title">
                 <h2>About Me</h2>
-                <p>I'm a data storyteller who believes every dataset has a hidden story waiting to be discovered. From building ML models to crafting dashboards and designing smart analytical tools, I enjoy transforming scattered numbers into patterns, predictions, and powerful insights. I love experimenting, learning, and creating solutions that look good and work even better.</p>
-
-                <p>A Data Science & Analytics practitioner with experience in machine learning, NLP, statistical analysis, and dashboard development. I specialize in cleaning, analyzing, and modeling data to uncover actionable insights. With hands-on projects in prediction systems, automation tools, and end-to-end analytics pipelines, I aim to build scalable, data-driven solutions that make an impact.</p>
+                <p>“I’m a data-driven problem solver skilled in machine learning, statistical analysis, and data visualization. I enjoy working with real datasets to build predictive models, automate workflows, and deliver actionable insights.”</p>
             </div>
             <div class="about-content">
                 <div class="about-text">
@@ -862,11 +1117,7 @@
                         <div class="skill">Data Visualization</div>
                         <div class="skill">Statistical Analysis</div>
                         <div class="skill">Tableau</div>
-                        <div class="skill">Power BI</div>
                         <div class="skill">Deep Learning</div>
-                        <div class="skill">Java</div>
-                        <div class="skill">Data Structure And Algorithm</div>
-                        
                     </div>
                 </div>
                 <div class="about-visual">
@@ -901,15 +1152,14 @@
                         <i class="fas fa-robot"></i>
                     </div>
                     <div class="project-content">
-                        <h3>Credit Card Fraud Detection</h3>
-                        <p> Built a machine learning model that detects fraudulent credit card transactions with high accuracy using anomaly detection and classification techniques.
-                            Designed a complete data pipeline with preprocessing, feature engineering, and real-time prediction capability for secure and reliable fraud detection with accuracy of 95%.</p>
+                        <h3>Customer Churn Prediction</h3>
+                        <p>Built a predictive model to identify customers at risk of churn with 92% accuracy using Random Forest and XGBoost.</p>
                         <div class="project-tags">
                             <span class="project-tag">Python</span>
                             <span class="project-tag">Scikit-learn</span>
                             <span class="project-tag">XGBoost</span>
                         </div>
-                        <a href="https://github.com/isakadri/credit_card_fraud_detection" class="project-link">View Details <i class="fas fa-arrow-right"></i></a>
+                        <a href="#" class="project-link">View Details <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
                 
@@ -1001,6 +1251,61 @@
         </div>
     </section>
 
+    <!-- Testimonials Section -->
+    <section class="section testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Certified  In Following </h2>
+                <p>Hi,I Have Certification In Following Courses</p>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "MR.Isa Kadri Completed Data Science and Analytics From HP Life and HP Foundation By completing this course, the above-named student has learned about some leading
+                            data science and analytics practices, methodologies, and tools, examined the benefits and
+                            challenges of a data-driven approach for businesses, and gained knowledge about some
+                            of the essential skills needed to pursue a career in the field"
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">HP</div>
+                        <div class="author-info">
+                            <h4>HP</h4>
+                            <p>Deputy Director, HP Life</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "MR.Isa Kadri Completed Full Stack Devlopement From BRIGHT INFO TECH. By completing this course, the above-named student has learned about Full Stack Developement
+                            Strong 
+                            knowledge In Web Developement
+                            "
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">IF</div>
+                        <div class="author-info">
+                            <h4>Info Tech</h4>
+                            <p>Mentor,Info Tech Acedemy</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "Completed Python Developement From Vidhyalay Analytics In corse Learned Basics to Advanced Python Programming,
+                            Data Analysis,Data Visualization,Web Scraping,Automation."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">VA</div>
+                        <div class="author-info">
+                            <h4>Vidhyalay Aanalytics</h4>
+                            <p>Chief,Vidhyalay Analytics</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Interactive Demo Section -->
     <section class="section demo" id="demo">
         <div class="container">
@@ -1080,7 +1385,7 @@
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-map-marker-alt"></i>
-                        <span>India,Latur Maharashtra</span>
+                        <span>Latur, Maharastra</span>
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-link"></i>
@@ -1127,6 +1432,31 @@
     </footer>
 
     <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        themeToggle.addEventListener('click', function() {
+            document.body.classList.toggle('dark-theme');
+            
+            if (document.body.classList.contains('dark-theme')) {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // Check for saved theme preference
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-theme');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        }
+
         // Skills Chart
         const skillsCtx = document.getElementById('skillsChart').getContext('2d');
         const skillsChart = new Chart(skillsCtx, {
@@ -1153,13 +1483,14 @@
                         suggestedMin: 0,
                         suggestedMax: 10,
                         grid: {
-                            color: 'rgba(108, 99, 255, 0.1)'
+                            color: document.body.classList.contains('dark-theme') ? 'rgba(255, 255, 255, 0.1)' : 'rgba(108, 99, 255, 0.1)'
                         },
                         pointLabels: {
                             font: {
                                 size: 12,
                                 weight: 'bold'
-                            }
+                            },
+                            color: document.body.classList.contains('dark-theme') ? '#E0E0E0' : '#2A2D43'
                         }
                     }
                 },
@@ -1203,7 +1534,8 @@
                         font: {
                             size: 16,
                             weight: 'bold'
-                        }
+                        },
+                        color: document.body.classList.contains('dark-theme') ? '#E0E0E0' : '#2A2D43'
                     },
                     tooltip: {
                         mode: 'index',
@@ -1211,18 +1543,27 @@
                     },
                     legend: {
                         position: 'bottom',
+                        labels: {
+                            color: document.body.classList.contains('dark-theme') ? '#E0E0E0' : '#2A2D43'
+                        }
                     }
                 },
                 scales: {
                     y: {
                         beginAtZero: false,
                         grid: {
-                            color: 'rgba(0, 0, 0, 0.05)'
+                            color: document.body.classList.contains('dark-theme') ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)'
+                        },
+                        ticks: {
+                            color: document.body.classList.contains('dark-theme') ? '#E0E0E0' : '#2A2D43'
                         }
                     },
                     x: {
                         grid: {
-                            color: 'rgba(0, 0, 0, 0.05)'
+                            color: document.body.classList.contains('dark-theme') ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)'
+                        },
+                        ticks: {
+                            color: document.body.classList.contains('dark-theme') ? '#E0E0E0' : '#2A2D43'
                         }
                     }
                 }
@@ -1380,12 +1721,63 @@
                 this.classList.remove('pulse');
             });
         });
+
+        // Animated counter for stats
+        function animateCounter(element, target, duration) {
+            let start = 0;
+            const increment = target / (duration / 16);
+            const timer = setInterval(() => {
+                start += increment;
+                if (start >= target) {
+                    element.textContent = target + '+';
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(start) + '+';
+                }
+            }, 16);
+        }
+
+        // Initialize counters when stats section is in view
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounter(document.getElementById('projectCount'), 50, 2000);
+                    animateCounter(document.getElementById('clientCount'), 7.0, 2000);
+                    animateCounter(document.getElementById('experienceCount'), 100, 2000);
+                    animateCounter(document.getElementById('algorithmCount'), 20, 2000);
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        statsObserver.observe(document.querySelector('.stats'));
+
+        // Typing animation
+        function typeWriter(element, text, speed) {
+            let i = 0;
+            element.innerHTML = '';
+            
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                } else {
+                    // Restart the animation after a delay
+                    setTimeout(() => {
+                        i = 0;
+                        element.innerHTML = '';
+                        type();
+                    }, 3000);
+                }
+            }
+            
+            type();
+        }
+
+        // Start typing animation
+        const typingElement = document.querySelector('.typing-text');
+        typeWriter(typingElement, 'Data Science & Analysis', 100);
     </script>
 </body>
-
 </html>
-
-
-
-
-
